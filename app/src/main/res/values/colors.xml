@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorFrame">#9933b5e5 </color>
+    <color name="colorButton">#0066CC </color>
+    <color name="colorWhite">#FFFFFF </color>
+    <color name="colorWhiteTextView">#A6FFFFFF </color>
+    <color name="colorBlackText">#80000000</color>
+    <color name="colorGreen">#339900</color>
+    <color name="colorBlue">#9999CCFF</color>
+    <color name="color_app_bar">#99008080</color>
+    <color name="color_on_off">#336699</color>
+</resources>

@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">SmartBotdemo</string>
+    <string name="topic">AMIE</string>
+    <string name="topic_Frame_Login">Welcom !</string>
+    <string name="topic_Frame_Register">Welcom new user!</string>
+    <string name="hint_email">email</string>
+    <string name="hint_password">password</string>
+    <string name="login_button">LOGIN</string>
+    <string name="register_button">REGISTER</string>
+    <string name="Remind_forgot">Forgot password ?</string>
+    <string name="Remind_register">Not memnber. Register now !</string>
+    <string name="Remind_login">Already register. Login now !</string>
+    <string name="hint_password_again">confirm password</string>
+
+    <string name="input_email">Enter email !</string>
+    <string name="input_password">Enter password !</string>
+    <string name="input_again_pass">Enter password again !</string>
+    <string name="wait">Please wait...</string>
+    <string name="login_successfully">Log in successfull!</string>
+    <string name="login_fail">Log in failed!</string>
+    <string name="processing">Processing...</string>
+
+    <string name="email_requried">Email is requried !</string>
+    <string name="password_requried">Password is requried !</string>
+    <string name="password_confirm_requried">Confirm password is requried !</string>
+    <string name="password_same_requried">Enter password same above !</string>
+    <string name="register">Register successfull!</string>
+    <string name="register_faile">Register faile!</string>
+    <string name="title_activity_main">Devices</string>
+    <string name="title_activity_select">Select equipment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+</resources>

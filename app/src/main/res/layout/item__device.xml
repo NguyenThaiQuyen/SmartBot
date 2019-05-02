@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="16">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="170dp"
+      android:background="@color/colorFrame"
+      android:padding="15dp"
+      android:orientation="horizontal"
+      android:weightSum="10">
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="4"
+          android:orientation="vertical"
+          android:weightSum="10">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="2">
+              <TextView
+                  android:id="@+id/txtName"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:text="Air condition"
+                  android:gravity="left"
+                  android:textStyle="bold"
+                  android:textSize="16sp"
+                  android:textColor="@color/colorWhite"/>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="8">
+              <ImageView
+                  android:id="@+id/imgView"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:scaleType="centerCrop"
+                  android:src="@drawable/air"
+                  />
+          </LinearLayout>
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="6"
+          android:layout_marginTop="25dp"
+          android:layout_marginLeft="25sp"
+          android:weightSum="2"
+          android:orientation="vertical">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:weightSum="8"
+              android:orientation="horizontal">
+              <TextView
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="4"
+                  android:text="Status"
+                  android:gravity="start"
+                  android:textColor="@color/colorWhite"
+                  android:textSize="16sp"
+                  android:textStyle="bold" />
+
+              <TextView
+                  android:id="@+id/txtStatus"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="4"
+                  android:text="On"
+                  android:textColor="@color/colorWhite"
+                  android:textStyle="bold"
+                  android:textSize="20sp"/>
+          </LinearLayout>
+
+          <LinearLayout
+
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:weightSum="8"
+              android:orientation="horizontal">
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="4"
+                  android:orientation="vertical"
+                  android:weightSum="2">
+                  <TextView
+                      android:id="@+id/txtTimeAlarm"
+                      android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:text="21:03"
+                      android:gravity="start"
+                      android:textColor="@color/colorWhite"
+                      android:textSize="19sp"
+                      android:textStyle="bold" />
+
+                  <TextView
+                      android:id="@+id/txtStatusAlarm"
+                      android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"
+                      android:text="ON"
+                      android:textColor="@color/colorWhite"
+                      android:textSize="16sp"
+                      android:textStyle="bold"/>
+              </LinearLayout>
+
+
+              <ImageView
+                  android:id="@+id/imgAlarm"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="4"
+                  android:src="@drawable/off"
+                  />
+          </LinearLayout>
+
+
+
+      </LinearLayout>
+
+  </LinearLayout>
+
+</LinearLayout>

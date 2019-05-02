@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/photo_background"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/marginTop_Topic_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/topic"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/size_Topic"
+            android:textStyle="bold"
+            app:fontFamily="@font/allura" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/linear1"
+        android:id="@+id/linear2"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/marginTop_Topic_Register"
+        android:background="@color/colorFrame"
+        android:layout_width="@dimen/width_Frame_Login"
+        android:layout_height="@dimen/height_Frame_Register">
+
+        <TextView
+            android:id="@+id/txtWelcom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/marginLeft_Welcom"
+            android:gravity="center"
+            android:text="@string/topic_Frame_Register"
+            android:textColor="@color/colorWhiteTextView"
+            android:textSize="@dimen/size_Welcom"
+            android:textStyle="bold"
+            app:fontFamily="@font/arizonia" />
+
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_Edit_Text"
+            android:layout_margin="@dimen/margin_Edit_Text"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/size_Edit_Text"
+            android:padding="@dimen/padding_Edit_Text"
+            android:hint="@string/hint_email"
+            android:background="@drawable/round_border_edit"
+            android:textColor="@color/colorBlackText" />
+
+        <EditText
+            android:id="@+id/edt_pass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_Edit_Text"
+            android:layout_marginLeft="@dimen/margin_Edit_Text"
+            android:layout_marginRight="@dimen/margin_Edit_Text"
+            android:layout_marginBottom="@dimen/margin_Edit_Text"
+            android:textSize="@dimen/size_Edit_Text"
+            android:hint="@string/hint_password"
+            android:padding="@dimen/padding_Edit_Text"
+            android:textColor="@color/colorBlackText"
+            android:background="@drawable/round_border_edit"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/edtConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_Edit_Text"
+            android:layout_marginLeft="@dimen/margin_Edit_Text"
+            android:layout_marginRight="@dimen/margin_Edit_Text"
+            android:layout_marginBottom="@dimen/margin_Edit_Text"
+            android:textSize="@dimen/size_Edit_Text"
+            android:hint="@string/hint_password_again"
+            android:padding="@dimen/padding_Edit_Text"
+            android:textColor="@color/colorBlackText"
+            android:background="@drawable/round_border_edit"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:layout_below="@id/edt_pass"
+            android:id="@+id/btnRegister"
+            android:layout_width="@dimen/width_Button_Register"
+            android:layout_height="wrap_content"
+            android:text="@string/register_button"
+            android:textSize="@dimen/size_Edit_Text"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/marginLeft_Button"
+            android:background="@drawable/round_border_button"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_below="@id/linear2"
+        android:id="@+id/btnLogin"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop_Topic_Register"
+        android:textSize="@dimen/size_Button"
+        android:background="@null"
+        android:text="@string/Remind_login"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
+
+
+</RelativeLayout>
