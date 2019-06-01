@@ -73,7 +73,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
 
         viewHolder.txtName.setText(equipment.getName());
         viewHolder.txtStatus.setText(equipment.getStatus());
-        String alarm[] = equipment.getAlarm().split("/");
+        final String alarm[] = equipment.getAlarm().split("/");
 
         viewHolder.txtStatusAlarm.setText(alarm[0]);
         viewHolder.txtTimeAlarm.setText(alarm[1]);
@@ -107,13 +107,44 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
             }
         });
 
-        viewHolder.imgViewAlarm.setOnClickListener(new View.OnClickListener() {
+        viewHolder.txtStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String status = viewHolder.txtStatus.getText().toString();
+                if(status.equals("ON")) {
+                    //viewHolder.txtStatus.setText("OFF");
+                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("OFF");
+                    viewHolder.imgView.setImageResource(imgOff[Integer.valueOf(equipment.getImage())]);
+                } else {
+                    //viewHolder.txtStatus.setText("ON");
+                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("ON");
+                    viewHolder.imgView.setImageResource(img[Integer.valueOf(equipment.getImage())]);
+                }
+            }
+        });
+
+        viewHolder.txtTimeAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mMainActivity, TimePickerActivity.class);
                 intent.putExtra("position", position);
                 intent.putExtra("status", viewHolder.txtStatus.getText());
                 mMainActivity.startActivity(intent);
+            }
+        });
+        viewHolder.imgViewAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String status = viewHolder.txtStatusAlarm.getText().toString();
+
+                if(status.equals("ON")) {
+                    //viewHolder.txtStatus.setText("OFF");
+                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue("OFF/" + alarm[1]);
+
+                } else {
+                    //viewHolder.txtStatus.setText("ON");
+                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue("ON/" + alarm[1]);
+                }
             }
         });
 

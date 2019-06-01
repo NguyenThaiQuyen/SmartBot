@@ -8,6 +8,7 @@ public class Equipment implements Serializable {
     private String status;
     private String alarm;
     private String image;
+
     public Equipment() {
 
     }

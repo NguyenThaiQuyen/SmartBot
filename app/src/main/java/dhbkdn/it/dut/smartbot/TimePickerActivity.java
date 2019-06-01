@@ -43,7 +43,16 @@ public class TimePickerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int hours = timePicker.getCurrentHour();
                 int min = timePicker.getCurrentMinute();
-                String alarm = status + "/" + hours + ":" + min;
+                String str_min = String.valueOf(min);
+                String str_hour = String.valueOf(hours);
+                if(min < 10) {
+                    str_min = "0" + min;
+                }
+
+                if(hours < 10) {
+                    str_hour = "0" +  hours;
+                }
+                String alarm = status + "/" + str_hour + ":" + str_min;
                 dataRef.child(user.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue(alarm);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }

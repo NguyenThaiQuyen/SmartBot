@@ -86,7 +86,7 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
     private void saveDevice(String name, int device) {
 
         if(createNew == 1) {
-            position = sharedPreferences.getInt("number", 0);
+            position = sharedPreferences.getInt("number", 1);
 
             position = position + 1;
             editor.putInt("number", position);

@@ -136,6 +136,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }
 
 
