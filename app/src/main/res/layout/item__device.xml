@@ -2,84 +2,90 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:targetApi="16">
+    tools:targetApi="16"
+    android:orientation="vertical"
+
+    android:padding="15dp"
+    android:layout_margin="10dp"
+    android:weightSum="17"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="#99347EB9"
+        android:paddingTop="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Air condition"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true" />
+        <ImageView
+            android:id="@+id/imgViewDelete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/delete"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="170dp"
-      android:background="#99347EB9"
-      android:padding="15dp"
+      android:layout_height="0dp"
+      android:layout_weight="12"
       android:orientation="horizontal"
       android:weightSum="10"
-      android:layout_margin="10dp">
+      android:background="#99347EB9"
+      android:paddingLeft="15dp"
+      android:paddingRight="15dp"
+      android:paddingBottom="15dp">
 
       <LinearLayout
           android:layout_width="0dp"
           android:layout_height="match_parent"
-          android:layout_weight="4"
-          android:orientation="vertical"
-          android:weightSum="10">
+          android:layout_weight="4">
 
-          <LinearLayout
+          <ImageView
+              android:id="@+id/imgView"
               android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="2">
-              <TextView
-                  android:id="@+id/txtName"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:text="Air condition"
-                  android:gravity="left"
-                  android:textStyle="bold"
-                  android:textSize="16sp"
-                  android:textColor="@color/colorWhite"/>
-          </LinearLayout>
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="8">
-              <ImageView
-                  android:id="@+id/imgView"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:scaleType="centerCrop"
-                  android:src="@drawable/air"
-                  />
-          </LinearLayout>
+              android:layout_height="match_parent"
+              android:scaleType="centerCrop"
+              android:src="@drawable/air"
+              />
       </LinearLayout>
 
       <LinearLayout
           android:layout_width="0dp"
           android:layout_height="match_parent"
           android:layout_weight="6"
-          android:layout_marginTop="25dp"
-          android:layout_marginLeft="25sp"
-          android:weightSum="2"
+          android:layout_marginTop="5dp"
+          android:layout_marginLeft="20dp"
+          android:weightSum="5"
           android:orientation="vertical">
           <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="0dp"
-              android:layout_weight="1"
-              android:weightSum="8"
+              android:layout_weight="2"
               android:orientation="horizontal">
-              <TextView
-                  android:layout_width="0dp"
-                  android:layout_height="match_parent"
-                  android:layout_weight="4"
-                  android:text="Status"
-                  android:gravity="start"
-                  android:textColor="@color/colorWhite"
-                  android:textSize="20sp"
-                  android:textStyle="bold" />
 
               <TextView
                   android:id="@+id/txtStatus"
-                  android:layout_width="0dp"
+                  android:layout_width="match_parent"
                   android:layout_height="match_parent"
-                  android:layout_weight="4"
                   android:text="On"
+                  android:gravity="start"
                   android:textColor="@color/colorWhite"
                   android:textStyle="bold"
                   android:textSize="24sp"/>
@@ -89,13 +95,13 @@
 
               android:layout_width="match_parent"
               android:layout_height="0dp"
-              android:layout_weight="1"
+              android:layout_weight="3"
               android:weightSum="8"
               android:orientation="horizontal">
               <LinearLayout
                   android:layout_width="0dp"
                   android:layout_height="match_parent"
-                  android:layout_weight="4"
+                  android:layout_weight="5"
                   android:orientation="vertical"
                   android:weightSum="2">
                   <TextView
@@ -116,7 +122,7 @@
                       android:layout_weight="1"
                       android:text="ON"
                       android:textColor="@color/colorWhite"
-                      android:textSize="17dp"
+                      android:textSize="16dp"
                       android:textStyle="bold"/>
               </LinearLayout>
 
@@ -125,7 +131,7 @@
                   android:id="@+id/imgAlarm"
                   android:layout_width="0dp"
                   android:layout_height="match_parent"
-                  android:layout_weight="4"
+                  android:layout_weight="3"
                   android:src="@drawable/off"
                   />
           </LinearLayout>

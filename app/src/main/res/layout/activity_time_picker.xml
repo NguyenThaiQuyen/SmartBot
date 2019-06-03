@@ -17,13 +17,38 @@
             android:layout_height="wrap_content"></TimePicker>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+            <Button
+                android:id="@+id/btnOff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="OFF"
+                android:layout_alignParentLeft="true"/>
+            <Button
+                android:id="@+id/btnOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="ON"
+                android:layout_alignParentRight="true" />
+
+
+        </RelativeLayout>
 
         <Button
             android:id="@+id/btnSaveTime"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Save" />
+            android:background="#1630D1"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:text="Save"
+            android:layout_marginTop="15dp"/>
 
     </LinearLayout>
     

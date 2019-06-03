@@ -16,22 +16,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+
 import dhbkdn.it.dut.smartbot.models.Equipment;
 
 
 public class SeclectEquipmentActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button btnFan, btnTv, btnAir, btnLight, btnSave;
-    private int[] ArrayImage = {
-            R.drawable.fan,
-            R.drawable.tv,
-            R.drawable.air,
-            R.drawable.light
-    };
 
-    private SharedPreferences sharedPreferences;
-    private static final String myref = "numberDevice";
-    private SharedPreferences.Editor editor;
 
     FirebaseDatabase mData =  FirebaseDatabase.getInstance();
     final DatabaseReference dataRef =  mData.getReference();
@@ -40,7 +33,7 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
     final FirebaseUser user = mAuth.getCurrentUser();
     int count  = 0;
     int createNew = 1;
-    int position = 0;
+    String position = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +48,9 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
 
     @SuppressLint("CommitPrefEdits")
     private void inits() {
-        sharedPreferences = getSharedPreferences(myref, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
         Intent intent = getIntent();
         createNew = intent.getIntExtra("new", 1);
-        position = intent.getIntExtra("position", 0);
+        position = intent.getStringExtra("position");
 
     }
 
@@ -86,20 +77,16 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
     private void saveDevice(String name, int device) {
 
         if(createNew == 1) {
-            position = sharedPreferences.getInt("number", 1);
-
-            position = position + 1;
-            editor.putInt("number", position);
-
-            editor.apply();
-
-            Equipment equipment = new Equipment(name, "OFF", "OFF/23:0", String.valueOf(device));
-            dataRef.child(user.getUid()).child("E" + position).setValue(equipment);
+            position = String.valueOf(new Date().getTime());
+            Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position));
+            assert user != null;
+            dataRef.child(user.getUid()).child(position).setValue(equipment);
 
         } else {
 
-            dataRef.child(user.getUid()).child("E" + position).child("image").setValue(String.valueOf(device));
-            dataRef.child(user.getUid()).child("E" + position).child("name").setValue(name);
+            assert user != null;
+            dataRef.child(user.getUid()).child(position).child("image").setValue(String.valueOf(device));
+            dataRef.child(user.getUid()).child(position).child("name").setValue(name);
         }
 
 

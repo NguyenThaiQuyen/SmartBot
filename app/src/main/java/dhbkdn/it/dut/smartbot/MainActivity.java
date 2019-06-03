@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,11 +54,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         lvListEquipment.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                dataRef.child(mUser.getUid()).child("E" + mList.get(position).getId()).removeValue();
+                mList.remove(position);
+                mAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+
+        lvListEquipment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), SeclectEquipmentActivity.class);
                 intent.putExtra("new", 0);
-                intent.putExtra("position", position + 1);
+                intent.putExtra("position", mList.get(position).getId());
                 startActivity(intent);
-                return false;
             }
         });
 
@@ -87,18 +97,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String strPos = dataSnapshot.getKey();
-                assert strPos != null;
-                strPos = strPos.substring(1);
+                Equipment equipment = dataSnapshot.getValue(Equipment.class);
 
-                int intPos = Integer.valueOf(strPos);
-                mList.set(intPos - 1, dataSnapshot.getValue(Equipment.class));
+                for(int i = 0; i < mList.size(); i++){
+                    assert equipment != null;
+                    if(mList.get(i).getId().equals(equipment.getId())) {
+                        mList.set(i, equipment);
+                        break;
+                    }
+                }
+
                 mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
+                Equipment equipment = dataSnapshot.getValue(Equipment.class);
+
+                for(int i = 0; i < mList.size(); i++){
+                    assert equipment != null;
+                    if(mList.get(i).getId().equals(equipment.getId())) {
+                        mList.remove(i);
+                        break;
+                    }
+                }
+
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -121,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void NewDevice(View view) {
         Intent intent = new Intent(getApplicationContext(), SeclectEquipmentActivity.class);
         intent.putExtra("new", 1);
-        intent.putExtra("position", 0);
+        intent.putExtra("position", "0");
 
         startActivity(intent);
     }

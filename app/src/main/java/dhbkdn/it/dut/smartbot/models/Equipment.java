@@ -8,16 +8,21 @@ public class Equipment implements Serializable {
     private String status;
     private String alarm;
     private String image;
+    private String device_status;
+    private String id;
+
 
     public Equipment() {
 
     }
 
-    public Equipment(String name, String status, String alarm, String image) {
+    public Equipment(String name, String status, String alarm, String image, String device_status, String id) {
         this.name = name;
         this.status = status;
         this.alarm = alarm;
         this.image = image;
+        this.device_status = device_status;
+        this.id = id;
     }
 
     public String getName() {
@@ -36,7 +41,6 @@ public class Equipment implements Serializable {
         this.status = status;
     }
 
-
     public String getAlarm() {
         return alarm;
     }
@@ -53,6 +57,22 @@ public class Equipment implements Serializable {
         this.image = image;
     }
 
+    public String getDevice_status() {
+        return device_status;
+    }
+
+    public void setDevice_status(String device_status) {
+        this.device_status = device_status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
@@ -60,6 +80,8 @@ public class Equipment implements Serializable {
                 ", status='" + status + '\'' +
                 ", alarm='" + alarm + '\'' +
                 ", image='" + image + '\'' +
+                ", device_status='" + device_status + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package dhbkdn.it.dut.smartbot.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -27,14 +28,19 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
     private ArrayList<Equipment> mList;
     private int mLayoutId;
     private Context mContext;
-    MainActivity mMainActivity;
+    private MainActivity mMainActivity;
 
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    final FirebaseUser mUser = mAuth.getCurrentUser();
-    FirebaseDatabase mData =  FirebaseDatabase.getInstance();
-    final DatabaseReference dataRef =  mData.getReference();
-    int[] img = {R.drawable.fan,R.drawable.tv,R.drawable.air,R.drawable.light};
-    int[] imgOff = {R.drawable.fanoff,R.drawable.tvoff,R.drawable.airoff,R.drawable.lightoff};
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final FirebaseUser mUser = mAuth.getCurrentUser();
+    private FirebaseDatabase mData =  FirebaseDatabase.getInstance();
+    private final DatabaseReference dataRef =  mData.getReference();
+    private int[] img = {R.drawable.fan,R.drawable.tv,R.drawable.air,R.drawable.light};
+    private int[] imgOff = {R.drawable.fanoff,R.drawable.tvoff,R.drawable.airoff,R.drawable.lightoff};
+    private final String onStatus = "ON - ON";
+    private final String offStatus = "OFF - OFF";
+    private final String waitingOn = "Waiting for turning on";
+    private final String waitingOff = "Waiting for turning off";
+    private final String alarmText = "will be ";
 
 
 
@@ -46,6 +52,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
         mMainActivity = mainActivity;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
         final ViewHolder viewHolder;
@@ -62,6 +69,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
             viewHolder.txtStatusAlarm = convertView.findViewById(R.id.txtStatusAlarm);
             viewHolder.imgView = convertView.findViewById(R.id.imgView);
             viewHolder.imgViewAlarm = convertView.findViewById(R.id.imgAlarm);
+            viewHolder.imgViewDelete = convertView.findViewById(R.id.imgViewDelete);
 
             convertView.setTag(viewHolder);
         }
@@ -72,13 +80,33 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
         final Equipment equipment = mList.get(position);
 
         viewHolder.txtName.setText(equipment.getName());
-        viewHolder.txtStatus.setText(equipment.getStatus());
-        final String alarm[] = equipment.getAlarm().split("/");
 
-        viewHolder.txtStatusAlarm.setText(alarm[0]);
+        final String[] alarm = equipment.getAlarm().split("/");
+
+        viewHolder.txtStatusAlarm.setText(alarmText + alarm[0]);
         viewHolder.txtTimeAlarm.setText(alarm[1]);
 
-        if (equipment.getStatus().equals("ON")) {
+        String show_status = "";
+        String app_status = equipment.getStatus();
+        String device_status = equipment.getDevice_status();
+
+        if(app_status.equals("ON") && device_status.equals("ON")) {
+            show_status = onStatus;
+            viewHolder.txtStatus.setTextSize(24);
+        } else if(app_status.equals("ON") && device_status.equals("OFF")) {
+            show_status = waitingOn;
+            viewHolder.txtStatus.setTextSize(17);
+        } else if(app_status.equals("OFF") && device_status.equals("ON")){
+            show_status = waitingOff;
+            viewHolder.txtStatus.setTextSize(17);
+
+        } else {
+            show_status = offStatus;
+            viewHolder.txtStatus.setTextSize(24);
+        }
+        viewHolder.txtStatus.setText(show_status);
+
+        if (show_status.equals(onStatus) || show_status.equals(waitingOff) ) {
             viewHolder.imgView.setImageResource(img[Integer.valueOf(equipment.getImage())]);
         } else {
             viewHolder.imgView.setImageResource(imgOff[Integer.valueOf(equipment.getImage())]);
@@ -91,18 +119,21 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
         }
 
 
+        final String finalShow_status = show_status;
         viewHolder.imgView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String status = viewHolder.txtStatus.getText().toString();
-                if(status.equals("ON")) {
-                    //viewHolder.txtStatus.setText("OFF");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("OFF");
-                    viewHolder.imgView.setImageResource(imgOff[Integer.valueOf(equipment.getImage())]);
+
+                if(finalShow_status.equals(onStatus) || finalShow_status.equals(waitingOn)) {
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child( equipment.getId()).child("status").setValue("OFF");
+
                 } else {
-                    //viewHolder.txtStatus.setText("ON");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("ON");
-                    viewHolder.imgView.setImageResource(img[Integer.valueOf(equipment.getImage())]);
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("ON");
+
                 }
             }
         });
@@ -110,15 +141,16 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
         viewHolder.txtStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String status = viewHolder.txtStatus.getText().toString();
-                if(status.equals("ON")) {
-                    //viewHolder.txtStatus.setText("OFF");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("OFF");
-                    viewHolder.imgView.setImageResource(imgOff[Integer.valueOf(equipment.getImage())]);
+                if(finalShow_status.equals(onStatus) || finalShow_status.equals(waitingOn)) {
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("OFF");
+
                 } else {
-                    //viewHolder.txtStatus.setText("ON");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("status").setValue("ON");
-                    viewHolder.imgView.setImageResource(img[Integer.valueOf(equipment.getImage())]);
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("ON");
+
                 }
             }
         });
@@ -127,24 +159,40 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mMainActivity, TimePickerActivity.class);
-                intent.putExtra("position", position);
-                intent.putExtra("status", viewHolder.txtStatus.getText());
+                intent.putExtra("position", equipment.getId());
+                if(finalShow_status.equals(onStatus) || finalShow_status.equals(waitingOn)) {
+
+                    intent.putExtra("status", "OFF");
+                } else {
+                    intent.putExtra("status", "ON");
+                }
+
                 mMainActivity.startActivity(intent);
             }
         });
         viewHolder.imgViewAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String status = viewHolder.txtStatusAlarm.getText().toString();
 
-                if(status.equals("ON")) {
-                    //viewHolder.txtStatus.setText("OFF");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue("OFF/" + alarm[1]);
+                if(alarm[0].equals("ON")) {
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("alarm").setValue("OFF/" + alarm[1]);
 
                 } else {
-                    //viewHolder.txtStatus.setText("ON");
-                    dataRef.child(mUser.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue("ON/" + alarm[1]);
+
+                    assert mUser != null;
+                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("alarm").setValue("ON/" + alarm[1]);
                 }
+            }
+        });
+
+        viewHolder.imgViewDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                assert mUser != null;
+
+                dataRef.child(mUser.getUid()).child(equipment.getId()).removeValue();
             }
         });
 
@@ -159,6 +207,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
 
         public ImageView imgView;
         public ImageView imgViewAlarm;
+        public ImageView imgViewDelete;
     }
 
 }

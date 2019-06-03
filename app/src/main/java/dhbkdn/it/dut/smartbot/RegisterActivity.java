@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 
+import dhbkdn.it.dut.smartbot.models.Equipment;
+
 import static android.text.TextUtils.isEmpty;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -105,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.register), Toast.LENGTH_SHORT).show();
                                     user = auth.getCurrentUser();
-                                    //createStore();
+                                    createStore();
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 } else {
                                     //Log.e("ERROR", task.getException().toString());
@@ -113,6 +115,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.register_faile) + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     //Toast.makeText(RegisterActivity.this, "Register failed!", Toast.LENGTH_SHORT).show();
                                 }
+                            }
+
+                            private void createStore() {
+                                Equipment equipment = new Equipment("Fan", "OFF", "OFF/23:00", "0", "OFF", "1");
                             }
                         });
                 break;

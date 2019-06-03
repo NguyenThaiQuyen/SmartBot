@@ -1,6 +1,8 @@
 package dhbkdn.it.dut.smartbot;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +19,10 @@ public class TimePickerActivity extends AppCompatActivity {
 
     TimePicker timePicker;
     String status;
-    int position;
+    String position;
     Button btnSaveTime;
+    Button btnOn;
+    Button btnOff;
 
     FirebaseDatabase mData =  FirebaseDatabase.getInstance();
     final DatabaseReference dataRef =  mData.getReference();
@@ -53,35 +57,66 @@ public class TimePickerActivity extends AppCompatActivity {
                     str_hour = "0" +  hours;
                 }
                 String alarm = status + "/" + str_hour + ":" + str_min;
-                dataRef.child(user.getUid()).child("E" + String.valueOf(position + 1)).child("alarm").setValue(alarm);
+                assert user != null;
+                dataRef.child(user.getUid()).child(position).child("alarm").setValue(alarm);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        btnOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOn();
+            }
+        });
+
+        btnOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setOff();
             }
         });
     }
 
     private void getWidgets() {
         timePicker.setIs24HourView(true);
+        if(status.equals("ON")) {
+           setOn();
+        } else {
+            setOff();
+        }
     }
 
     private void setWidgets() {
         timePicker = findViewById(R.id.timePicker);
         btnSaveTime = findViewById(R.id.btnSaveTime);
+        btnOff = findViewById(R.id.btnOff);
+        btnOn = findViewById(R.id.btnOn);
 
     }
 
     private void inits() {
         Intent intent = getIntent();
         status = intent.getStringExtra("status");
-        if (status.equals("ON")) {
 
-            status = "OFF";
-        } else {
-            status = "ON";
-        }
-        position = intent.getIntExtra("position", 0);
+        position = intent.getStringExtra("position");
 
     }
 
 
+    public void setOff() {
+        status = "OFF";
+        btnOff.setBackgroundColor(Color.RED);
+        btnOff.setTextColor(Color.WHITE);
+        btnOn.setBackgroundColor(Color.WHITE);
+        btnOn.setTextColor(Color.BLACK);
+    }
 
+    public void setOn() {
+        status = "ON";
+        btnOn.setBackgroundColor(Color.RED);
+        btnOn.setTextColor(Color.WHITE);
+        btnOff.setBackgroundColor(Color.WHITE);
+        btnOff.setTextColor(Color.BLACK);
+    }
 }

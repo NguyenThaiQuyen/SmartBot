@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_margin="12dp">
 
                     <Button
                         android:id="@+id/btnFan"
@@ -64,8 +64,9 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="17sp"
-                        android:text="Fan"/>
+                        android:textSize="18sp"
+                        android:text="Fan"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -74,7 +75,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_margin="12dp">
 
                     <Button
                         android:id="@+id/btnTv"
@@ -90,7 +91,8 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="17sp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         android:text="Television"/>
                 </LinearLayout>
 
@@ -108,7 +110,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_margin="12dp">
 
                     <Button
                         android:id="@+id/btnAir"
@@ -124,7 +126,8 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="17sp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         android:text="Air"/>
                 </LinearLayout>
 
@@ -134,7 +137,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_margin="12dp">
 
                     <Button
                         android:id="@+id/btnLight"
@@ -150,8 +153,9 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="17sp"
-                        android:text="Light"/>
+                        android:textSize="18sp"
+                        android:text="Light"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
             </LinearLayout>
