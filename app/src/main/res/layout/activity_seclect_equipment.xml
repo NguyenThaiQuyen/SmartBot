@@ -55,7 +55,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
-                        android:background="@drawable/fan"/>
+                        android:background="@drawable/fan"
+                        android:textStyle="bold"
+                        android:textColor="#14E91C"
+                        android:textSize="100sp"/>
 
                     <TextView
                         android:id="@+id/txtFan"
@@ -82,7 +85,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
-                        android:background="@drawable/tv"/>
+                        android:background="@drawable/tv"
+                        android:textStyle="bold"
+                        android:textColor="#14E91C"
+                        android:textSize="100sp"/>
 
                     <TextView
                         android:id="@+id/txtTv"
@@ -117,7 +123,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
-                        android:background="@drawable/air"/>
+                        android:background="@drawable/air"
+                        android:textStyle="bold"
+                        android:textColor="#14E91C"
+                        android:textSize="100sp"/>
 
                     <TextView
                         android:id="@+id/txtAir"
@@ -144,7 +153,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="3"
-                        android:background="@drawable/light"/>
+                        android:background="@drawable/light"
+                        android:textStyle="bold"
+                        android:textColor="#14E91C"
+                        android:textSize="100sp"/>
 
                     <TextView
                         android:id="@+id/txtLight"

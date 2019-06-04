@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,15 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addListener() {
-        lvListEquipment.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                dataRef.child(mUser.getUid()).child("E" + mList.get(position).getId()).removeValue();
-                mList.remove(position);
-                mAdapter.notifyDataSetChanged();
-                return false;
-            }
-        });
 
         lvListEquipment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -90,40 +82,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dataRef.child(mUser.getUid()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Equipment equipment = dataSnapshot.getValue(Equipment.class);
-                mList.add(equipment);
-                mAdapter.notifyDataSetChanged();
+                try{
+                    Equipment equipment = dataSnapshot.getValue(Equipment.class);
+                    mList.add(equipment);
+                    mAdapter.notifyDataSetChanged();
+                } catch(Exception ignored){
+
+                }
+
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Equipment equipment = dataSnapshot.getValue(Equipment.class);
+                try{
+                    Equipment equipment = dataSnapshot.getValue(Equipment.class);
 
-                for(int i = 0; i < mList.size(); i++){
-                    assert equipment != null;
-                    if(mList.get(i).getId().equals(equipment.getId())) {
-                        mList.set(i, equipment);
-                        break;
+                    for(int i = 0; i < mList.size(); i++){
+                        assert equipment != null;
+                        if(mList.get(i).getId().equals(equipment.getId())) {
+                            mList.set(i, equipment);
+                            break;
+                        }
                     }
+
+                    mAdapter.notifyDataSetChanged();
+                }catch (Exception ignored){
+
                 }
 
-                mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
-                Equipment equipment = dataSnapshot.getValue(Equipment.class);
+                try{
+                    Equipment equipment = dataSnapshot.getValue(Equipment.class);
 
-                for(int i = 0; i < mList.size(); i++){
-                    assert equipment != null;
-                    if(mList.get(i).getId().equals(equipment.getId())) {
-                        mList.remove(i);
-                        break;
+                    for(int i = 0; i < mList.size(); i++){
+                        assert equipment != null;
+                        if(mList.get(i).getId().equals(equipment.getId())) {
+                            mList.remove(i);
+                            break;
+
+                        }
                     }
+
+                    mAdapter.notifyDataSetChanged();
+                }catch (Exception ignored){
+
                 }
 
-                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -144,11 +152,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void NewDevice(View view) {
-        Intent intent = new Intent(getApplicationContext(), SeclectEquipmentActivity.class);
-        intent.putExtra("new", 1);
-        intent.putExtra("position", "0");
+        if(mList.size() < 6){
+            Intent intent = new Intent(getApplicationContext(), SeclectEquipmentActivity.class);
+            intent.putExtra("new", 1);
+            intent.putExtra("position", String.valueOf(mList.size()));
 
-        startActivity(intent);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "You can just control 6 devices", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -164,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        return;
+
     }
 }
 

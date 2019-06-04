@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -77,7 +78,6 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
     private void saveDevice(String name, int device) {
 
         if(createNew == 1) {
-            position = String.valueOf(new Date().getTime());
             Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position));
             assert user != null;
             dataRef.child(user.getUid()).child(position).setValue(equipment);
@@ -99,37 +99,41 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
         switch (v.getId()) {
             case R.id.btnFan: {
                 count  = 1;
-                btnFan.setBackgroundResource(R.drawable.fanselect);
-                btnTv.setBackgroundResource(R.drawable.tv);
-                btnAir.setBackgroundResource(R.drawable.air);
-                btnLight.setBackgroundResource(R.drawable.light);
+                btnFan.setText(Html.fromHtml("&#x2713"));
+                btnTv.setText("");
+                btnAir.setText("");
+                btnLight.setText("");
+
                 break;
             }
 
             case R.id.btnTv:{
                 count = 2;
-                btnFan.setBackgroundResource(R.drawable.fan);
-                btnTv.setBackgroundResource(R.drawable.tvselect);
-                btnAir.setBackgroundResource(R.drawable.air);
-                btnLight.setBackgroundResource(R.drawable.light);
+
+                btnFan.setText("");
+                btnTv.setText(Html.fromHtml("&#x2713"));
+                btnAir.setText("");
+                btnLight.setText("");
                 break;
             }
 
             case R.id.btnAir:{
                 count = 3;
-                btnFan.setBackgroundResource(R.drawable.fan);
-                btnTv.setBackgroundResource(R.drawable.tv);
-                btnAir.setBackgroundResource(R.drawable.airselect);
-                btnLight.setBackgroundResource(R.drawable.light);
+
+                btnFan.setText("");
+                btnTv.setText("");
+                btnAir.setText(Html.fromHtml("&#x2713"));
+                btnLight.setText("");
                 break;
             }
 
             case R.id.btnLight:{
                 count = 4;
-                btnFan.setBackgroundResource(R.drawable.fan);
-                btnTv.setBackgroundResource(R.drawable.tv);
-                btnAir.setBackgroundResource(R.drawable.air);
-                btnLight.setBackgroundResource(R.drawable.lightselect);
+
+                btnFan.setText("");
+                btnTv.setText("");
+                btnAir.setText("");
+                btnLight.setText(Html.fromHtml("&#x2713"));
                 break;
             }
 

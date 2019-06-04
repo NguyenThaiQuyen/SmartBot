@@ -79,7 +79,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
 
         final Equipment equipment = mList.get(position);
 
-        viewHolder.txtName.setText(equipment.getName());
+        viewHolder.txtName.setText((position + 1) +". " + equipment.getName());
 
         final String[] alarm = equipment.getAlarm().split("/");
 
@@ -191,8 +191,19 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
             @Override
             public void onClick(View v) {
                 assert mUser != null;
+                Equipment tmp;
+                for(int i = position + 1; i < mList.size(); i++) {
+                    tmp = mList.get(i);
+                    tmp.setId(String.valueOf(i-1));
+                    mList.set(i-1, tmp);
 
-                dataRef.child(mUser.getUid()).child(equipment.getId()).removeValue();
+                    dataRef.child(mUser.getUid()).child(String.valueOf(i - 1)).setValue(tmp);
+                }
+
+                dataRef.child(mUser.getUid()).child(String.valueOf(mList.size()-1)).removeValue();
+                mList.remove(mList.size()-1);
+
+
             }
         });
 
