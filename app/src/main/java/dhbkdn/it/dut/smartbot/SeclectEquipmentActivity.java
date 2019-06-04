@@ -80,13 +80,13 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
         if(createNew == 1) {
             Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position));
             assert user != null;
-            dataRef.child(user.getUid()).child(position).setValue(equipment);
+            dataRef.child(user.getUid()).child("E" + position).setValue(equipment);
 
         } else {
 
             assert user != null;
-            dataRef.child(user.getUid()).child(position).child("image").setValue(String.valueOf(device));
-            dataRef.child(user.getUid()).child(position).child("name").setValue(name);
+            dataRef.child(user.getUid()).child("E" + position).child("image").setValue(String.valueOf(device));
+            dataRef.child(user.getUid()).child("E" + position).child("name").setValue(name);
         }
 
 

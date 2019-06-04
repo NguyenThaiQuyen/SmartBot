@@ -79,7 +79,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
 
         final Equipment equipment = mList.get(position);
 
-        viewHolder.txtName.setText((position + 1) +". " + equipment.getName());
+        viewHolder.txtName.setText("E" + equipment.getId() + ". " + equipment.getName());
 
         final String[] alarm = equipment.getAlarm().split("/");
 
@@ -127,12 +127,12 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
                 if(finalShow_status.equals(onStatus) || finalShow_status.equals(waitingOn)) {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child( equipment.getId()).child("status").setValue("OFF");
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("status").setValue("OFF");
 
                 } else {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("ON");
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("status").setValue("ON");
 
                 }
             }
@@ -144,12 +144,12 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
                 if(finalShow_status.equals(onStatus) || finalShow_status.equals(waitingOn)) {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("OFF");
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("status").setValue("OFF");
 
                 } else {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("status").setValue("ON");
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("status").setValue("ON");
 
                 }
             }
@@ -177,12 +177,12 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
                 if(alarm[0].equals("ON")) {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("alarm").setValue("OFF/" + alarm[1]);
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("alarm").setValue("OFF/" + alarm[1]);
 
                 } else {
 
                     assert mUser != null;
-                    dataRef.child(mUser.getUid()).child(equipment.getId()).child("alarm").setValue("ON/" + alarm[1]);
+                    dataRef.child(mUser.getUid()).child("E" + equipment.getId()).child("alarm").setValue("ON/" + alarm[1]);
                 }
             }
         });
@@ -197,10 +197,10 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
                     tmp.setId(String.valueOf(i-1));
                     mList.set(i-1, tmp);
 
-                    dataRef.child(mUser.getUid()).child(String.valueOf(i - 1)).setValue(tmp);
+                    dataRef.child(mUser.getUid()).child("E" + (i - 1)).setValue(tmp);
                 }
 
-                dataRef.child(mUser.getUid()).child(String.valueOf(mList.size()-1)).removeValue();
+                dataRef.child(mUser.getUid()).child("E" + (mList.size()-1)).removeValue();
                 mList.remove(mList.size()-1);
 
 

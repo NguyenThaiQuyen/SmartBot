@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.register), Toast.LENGTH_SHORT).show();
                                     user = auth.getCurrentUser();
-                                    createStore();
+
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 } else {
                                     //Log.e("ERROR", task.getException().toString());
@@ -117,9 +117,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 }
                             }
 
-                            private void createStore() {
-                                Equipment equipment = new Equipment("Fan", "OFF", "OFF/23:00", "0", "OFF", "1");
-                            }
+
                         });
                 break;
             }

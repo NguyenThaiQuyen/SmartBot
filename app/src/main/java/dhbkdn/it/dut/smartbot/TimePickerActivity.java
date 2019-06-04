@@ -58,7 +58,7 @@ public class TimePickerActivity extends AppCompatActivity {
                 }
                 String alarm = status + "/" + str_hour + ":" + str_min;
                 assert user != null;
-                dataRef.child(user.getUid()).child(position).child("alarm").setValue(alarm);
+                dataRef.child(user.getUid()).child("E" + position).child("alarm").setValue(alarm);
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
