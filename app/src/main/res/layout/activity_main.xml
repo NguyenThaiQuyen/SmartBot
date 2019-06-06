@@ -11,37 +11,35 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="@dimen/padding_main">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="List devices"
+            android:text="@string/list_devices"
             android:textColor="@color/colorWhite"
-            android:textSize="25sp"
-            android:textStyle="bold"
-
-            />
+            android:textSize="@dimen/font_size_main"
+            android:textStyle="bold" />
 
         <Button
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/size_button"
+            android:layout_height="@dimen/size_button"
             android:background="@drawable/round_button"
            android:layout_toLeftOf="@+id/logout"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="@dimen/margin_Edit_Text"
             android:layout_centerVertical="true"
-            android:text="+"
+            android:text="@string/add"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/font_size_button_add"
             android:textStyle="bold"
             android:onClick="NewDevice"/>
 
-
         <ImageView
             android:id="@+id/logout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/size_imnage_View"
+            android:layout_height="@dimen/size_imnage_View"
             android:scaleType="centerCrop"
             android:src="@drawable/logout"
             android:layout_alignParentRight="true"
@@ -49,10 +47,11 @@
             android:onClick="Logout"/>
 
     </RelativeLayout>
+
     <ListView
         android:id="@+id/lvListEquipment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content">
 
-
+    </ListView>
 </LinearLayout>

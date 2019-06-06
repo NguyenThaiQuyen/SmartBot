@@ -38,7 +38,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         inits();
         setWidgets();
         addListener();
-
     }
 
     private void inits() {
@@ -63,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         email = edtEmail.getText().toString().trim();
         password = edtPass.getText().toString().trim();
         confirmPassword = edtConfirm.getText().toString().trim();
-
 
         if (isEmpty(email)) {
             edtEmail.setError(getResources().getString(R.string.email_requried));
@@ -110,10 +108,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                     startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 } else {
-                                    //Log.e("ERROR", task.getException().toString());
                                     FirebaseAuthException e = (FirebaseAuthException) task.getException();
                                     Toast.makeText(RegisterActivity.this, getResources().getString(R.string.register_faile) + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    //Toast.makeText(RegisterActivity.this, "Register failed!", Toast.LENGTH_SHORT).show();
                                 }
                             }
 

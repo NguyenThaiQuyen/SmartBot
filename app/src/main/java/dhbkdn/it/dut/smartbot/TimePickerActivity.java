@@ -69,7 +69,6 @@ public class TimePickerActivity extends AppCompatActivity {
                 setOn();
             }
         });
-
         btnOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +79,7 @@ public class TimePickerActivity extends AppCompatActivity {
 
     private void getWidgets() {
         timePicker.setIs24HourView(true);
-        if(status.equals("ON")) {
+        if (status.equals("ON")) {
            setOn();
         } else {
             setOff();
@@ -92,17 +91,13 @@ public class TimePickerActivity extends AppCompatActivity {
         btnSaveTime = findViewById(R.id.btnSaveTime);
         btnOff = findViewById(R.id.btnOff);
         btnOn = findViewById(R.id.btnOn);
-
     }
 
     private void inits() {
         Intent intent = getIntent();
         status = intent.getStringExtra("status");
-
         position = intent.getStringExtra("position");
-
     }
-
 
     public void setOff() {
         status = "OFF";

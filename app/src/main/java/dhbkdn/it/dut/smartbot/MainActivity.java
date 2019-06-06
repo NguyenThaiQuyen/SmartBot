@@ -48,11 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setWigets();
         getWigets();
         addListener();
-
     }
 
     private void addListener() {
-
         lvListEquipment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-
     private void inits() {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
@@ -74,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mList = new ArrayList<>();
         mAdapter = new ListViewEquipment(this, R.layout.item__device, mList, MainActivity.this);
     }
-
 
     private void getWigets(){
         lvListEquipment.setAdapter(mAdapter);
@@ -148,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setWigets() {
         lvListEquipment = findViewById(R.id.lvListEquipment);
-
     }
 
     public void NewDevice(View view) {

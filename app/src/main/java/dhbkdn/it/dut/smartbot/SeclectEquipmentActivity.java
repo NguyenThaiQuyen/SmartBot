@@ -26,7 +26,6 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
 
     private Button btnFan, btnTv, btnAir, btnLight, btnSave;
 
-
     FirebaseDatabase mData =  FirebaseDatabase.getInstance();
     final DatabaseReference dataRef =  mData.getReference();
 
@@ -52,7 +51,6 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
         Intent intent = getIntent();
         createNew = intent.getIntExtra("new", 1);
         position = intent.getStringExtra("position");
-
     }
 
     private void setWidgets() {
@@ -77,7 +75,7 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
 
     private void saveDevice(String name, int device) {
 
-        if(createNew == 1) {
+        if (createNew == 1) {
             Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position));
             assert user != null;
             dataRef.child(user.getUid()).child("E" + position).setValue(equipment);
@@ -88,9 +86,6 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
             dataRef.child(user.getUid()).child("E" + position).child("image").setValue(String.valueOf(device));
             dataRef.child(user.getUid()).child("E" + position).child("name").setValue(name);
         }
-
-
-
     }
 
     @Override
@@ -99,11 +94,11 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
         switch (v.getId()) {
             case R.id.btnFan: {
                 count  = 1;
+
                 btnFan.setText(Html.fromHtml("&#x2713"));
                 btnTv.setText("");
                 btnAir.setText("");
                 btnLight.setText("");
-
                 break;
             }
 
@@ -141,29 +136,23 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
                 switch(count) {
                     case 0: {
                         Toast.makeText(getApplicationContext(), "Please choose a device", Toast.LENGTH_SHORT).show();
-
                         break;
                     }
-
                     case 1: {
                         saveDevice("Fan", 0);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         break;
-
                     }
-
                     case 2: {
                         saveDevice("Television", 1);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         break;
                     }
-
                     case 3: {
                         saveDevice("Air condition", 2);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         break;
                     }
-
                     case 4: {
                         saveDevice("Light", 3);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -173,6 +162,5 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
                 break;
             }
         }
-
     }
 }

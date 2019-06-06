@@ -11,7 +11,6 @@ public class Equipment implements Serializable {
     private String device_status;
     private String id;
 
-
     public Equipment() {
 
     }

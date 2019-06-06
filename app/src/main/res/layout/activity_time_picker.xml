@@ -16,27 +16,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TimePicker>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:paddingLeft="@dimen/padding_picker"
+            android:paddingRight="@dimen/padding_picker">
+
             <Button
                 android:id="@+id/btnOff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="OFF"
+                android:text="@string/off_alarm"
                 android:layout_alignParentLeft="true"/>
+
             <Button
                 android:id="@+id/btnOn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="ON"
+                android:text="@string/on_alarm"
                 android:layout_alignParentRight="true" />
-
 
         </RelativeLayout>
 
@@ -44,13 +44,12 @@
             android:id="@+id/btnSaveTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1630D1"
+            android:background="@color/color_picker"
             android:textColor="@color/colorWhite"
             android:textStyle="bold"
-            android:text="Save"
-            android:layout_marginTop="15dp"/>
+            android:text="@string/save_alram"
+            android:layout_marginTop="@dimen/margin_picker"/>
 
     </LinearLayout>
-    
 
 </RelativeLayout>

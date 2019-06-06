@@ -32,8 +32,8 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="4"
-            android:padding="10dp"
-            android:layout_margin="20dp"
+            android:padding="@dimen/padding_Edit_Text"
+            android:layout_margin="@dimen/padding_select"
             android:background="@color/colorFrame">
 
             <LinearLayout
@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:layout_margin="12dp">
+                    android:layout_margin="@dimen/layout_select">
 
                     <Button
                         android:id="@+id/btnFan"
@@ -57,8 +57,8 @@
                         android:layout_weight="3"
                         android:background="@drawable/fan"
                         android:textStyle="bold"
-                        android:textColor="#14E91C"
-                        android:textSize="100sp"/>
+                        android:textColor="@color/color_select"
+                        android:textSize="@dimen/font_size_select"/>
 
                     <TextView
                         android:id="@+id/txtFan"
@@ -67,8 +67,8 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="18sp"
-                        android:text="Fan"
+                        android:textSize="@dimen/font_size_device"
+                        android:text="@string/fan"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
@@ -78,7 +78,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:layout_margin="12dp">
+                    android:layout_margin="@dimen/layout_select">
 
                     <Button
                         android:id="@+id/btnTv"
@@ -87,8 +87,8 @@
                         android:layout_weight="3"
                         android:background="@drawable/tv"
                         android:textStyle="bold"
-                        android:textColor="#14E91C"
-                        android:textSize="100sp"/>
+                        android:textColor="@color/color_select"
+                        android:textSize="@dimen/font_size_select"/>
 
                     <TextView
                         android:id="@+id/txtTv"
@@ -97,11 +97,10 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_size_device"
                         android:textStyle="bold"
-                        android:text="Television"/>
+                        android:text="@string/tv"/>
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
@@ -116,7 +115,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:layout_margin="12dp">
+                    android:layout_margin="@dimen/layout_select">
 
                     <Button
                         android:id="@+id/btnAir"
@@ -125,8 +124,8 @@
                         android:layout_weight="3"
                         android:background="@drawable/air"
                         android:textStyle="bold"
-                        android:textColor="#14E91C"
-                        android:textSize="100sp"/>
+                        android:textColor="@color/color_select"
+                        android:textSize="@dimen/font_size_select"/>
 
                     <TextView
                         android:id="@+id/txtAir"
@@ -135,9 +134,9 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/font_size_device"
                         android:textStyle="bold"
-                        android:text="Air"/>
+                        android:text="@string/air"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -146,7 +145,7 @@
                     android:layout_weight="1"
                     android:weightSum="4"
                     android:orientation="vertical"
-                    android:layout_margin="12dp">
+                    android:layout_margin="@dimen/layout_select">
 
                     <Button
                         android:id="@+id/btnLight"
@@ -155,8 +154,8 @@
                         android:layout_weight="3"
                         android:background="@drawable/light"
                         android:textStyle="bold"
-                        android:textColor="#14E91C"
-                        android:textSize="100sp"/>
+                        android:textColor="@color/color_select"
+                        android:textSize="@dimen/font_size_select"/>
 
                     <TextView
                         android:id="@+id/txtLight"
@@ -165,13 +164,11 @@
                         android:layout_weight="1"
                         android:textColor="@color/colorWhite"
                         android:gravity="center"
-                        android:textSize="18sp"
-                        android:text="Light"
+                        android:textSize="@dimen/font_size_device"
+                        android:text="@string/light"
                         android:textStyle="bold"/>
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -179,21 +176,20 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:paddingRight="100dp"
-            android:paddingLeft="100dp"
-            android:paddingTop="20dp">
+            android:paddingRight="@dimen/padding_button_select"
+            android:paddingLeft="@dimen/padding_button_select"
+            android:paddingTop="@dimen/padding_top_button_select">
 
             <Button
                 android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SAVE"
-                android:textSize="20sp"
+                android:text="@string/save"
+                android:textSize="@dimen/font_size_button_save"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:background="@color/colorButton"
                 android:textColor="@color/colorWhite"/>
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

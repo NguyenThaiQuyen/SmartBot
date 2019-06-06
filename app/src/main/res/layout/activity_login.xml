@@ -113,6 +113,4 @@
         android:text="@string/Remind_register"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite" />
-
-
 </RelativeLayout>

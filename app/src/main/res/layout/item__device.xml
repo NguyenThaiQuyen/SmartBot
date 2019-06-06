@@ -7,33 +7,33 @@
     tools:targetApi="16"
     android:orientation="vertical"
 
-    android:padding="15dp"
-    android:layout_margin="10dp"
+    android:padding="@dimen/padding_item"
+    android:layout_margin="@dimen/margin_item"
     android:weightSum="17"
     >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:background="#99347EB9"
-        android:paddingTop="8dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp">
+        android:background="@color/bg_item"
+        android:paddingTop="@dimen/padding_top_item"
+        android:paddingLeft="@dimen/padding_left_item"
+        android:paddingRight="@dimen/padding_right_item">
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Air condition"
+            android:layout_height="@dimen/height_name_item"
+            android:text="@string/air"
             android:gravity="center_vertical"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="@dimen/font_size_name_item"
             android:textColor="@color/colorWhite"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true" />
         <ImageView
             android:id="@+id/imgViewDelete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/width_delete_item"
+            android:layout_height="@dimen/height_delete_item"
             android:scaleType="centerCrop"
             android:src="@drawable/delete"
             android:layout_alignParentRight="true"
@@ -48,9 +48,9 @@
       android:orientation="horizontal"
       android:weightSum="10"
       android:background="#99347EB9"
-      android:paddingLeft="15dp"
-      android:paddingRight="15dp"
-      android:paddingBottom="15dp">
+      android:paddingLeft="@dimen/padding_left_item"
+      android:paddingRight="@dimen/padding_right_item"
+      android:paddingBottom="@dimen/padding_bottom_item">
 
       <LinearLayout
           android:layout_width="0dp"
@@ -70,8 +70,8 @@
           android:layout_width="0dp"
           android:layout_height="match_parent"
           android:layout_weight="6"
-          android:layout_marginTop="5dp"
-          android:layout_marginLeft="20dp"
+          android:layout_marginTop="@dimen/margin_top_status"
+          android:layout_marginLeft="@dimen/margin_left_status"
           android:weightSum="5"
           android:orientation="vertical">
           <LinearLayout
@@ -88,7 +88,7 @@
                   android:gravity="start"
                   android:textColor="@color/colorWhite"
                   android:textStyle="bold"
-                  android:textSize="24sp"/>
+                  android:textSize="@dimen/font_size_status"/>
           </LinearLayout>
 
           <LinearLayout
@@ -112,7 +112,7 @@
                       android:text="21:03"
                       android:gravity="start"
                       android:textColor="@color/colorWhite"
-                      android:textSize="22sp"
+                      android:textSize="@dimen/font_size_time_alarm"
                       android:textStyle="bold" />
 
                   <TextView
@@ -120,9 +120,9 @@
                       android:layout_width="match_parent"
                       android:layout_height="0dp"
                       android:layout_weight="1"
-                      android:text="ON"
+                      android:text="@string/on_alarm"
                       android:textColor="@color/colorWhite"
-                      android:textSize="16dp"
+                      android:textSize="@dimen/font_size_status_alarm"
                       android:textStyle="bold"/>
               </LinearLayout>
 

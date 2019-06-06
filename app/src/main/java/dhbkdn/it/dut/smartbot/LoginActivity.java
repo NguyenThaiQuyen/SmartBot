@@ -52,24 +52,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = findViewById(R.id.btnLogin);
     }
 
-    private void getWidgets() {
+    private String getEmail() {
         email = edtEmail.getText().toString().trim();
-        password = edtPass.getText().toString().trim();
+        if (TextUtils.isEmpty(email)) {
+            return null;
+        }
+        return email;
+    }
 
+    private void requireEnterEmail() {
+        email = edtEmail.getText().toString().trim();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_email), Toast.LENGTH_SHORT).show();
             return;
         }
+    }
 
+    private void requireEnterPassword() {
+        password = edtPass.getText().toString().trim();
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_password), Toast.LENGTH_SHORT).show();
             return;
         }
-
         if (password.length() < 6) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_again_pass), Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    private void getWidgets() {
+        requireEnterEmail();
+        requireEnterPassword();
     }
 
     private void addListener() {
@@ -110,6 +123,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             case R.id.btnRegister: {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                break;
+            }
+            case R.id.btnForgot: {
+                String email = getEmail();
+                if ( email == null ) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.input_email), Toast.LENGTH_SHORT).show();
+                } else {
+                    final ProgressDialog mProgressDialog = ProgressDialog.show(LoginActivity.this, getResources().getString(R.string.wait), getResources().getString(R.string.processing), true);
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.message), Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, getResources().getString(R.string.message_faile), Toast.LENGTH_SHORT).show();
+                                    }
+                                    mProgressDialog.dismiss();
+                                }
+                            });
+                }
                 break;
             }
         }
