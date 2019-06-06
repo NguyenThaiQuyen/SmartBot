@@ -10,18 +10,28 @@ public class Equipment implements Serializable {
     private String image;
     private String device_status;
     private String id;
+    private String id_device;
 
     public Equipment() {
 
     }
 
-    public Equipment(String name, String status, String alarm, String image, String device_status, String id) {
+    public Equipment(String name, String status, String alarm, String image, String device_status, String id, String id_device) {
         this.name = name;
         this.status = status;
         this.alarm = alarm;
         this.image = image;
         this.device_status = device_status;
         this.id = id;
+        this.id_device = id_device;
+    }
+
+    public String getId_device() {
+        return id_device;
+    }
+
+    public void setId_device(String id_device) {
+        this.id_device = id_device;
     }
 
     public String getName() {
@@ -81,6 +91,7 @@ public class Equipment implements Serializable {
                 ", image='" + image + '\'' +
                 ", device_status='" + device_status + '\'' +
                 ", id='" + id + '\'' +
+                ", id_device='" + id_device + '\'' +
                 '}';
     }
 }

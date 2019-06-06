@@ -184,6 +184,7 @@ public class ListViewEquipment extends ArrayAdapter<Equipment> {
             }
         });
 
+
         return convertView;
     }
 

@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Time;
 import java.util.Date;
 
 import dhbkdn.it.dut.smartbot.models.Equipment;
@@ -76,7 +77,8 @@ public class SeclectEquipmentActivity extends AppCompatActivity implements View.
     private void saveDevice(String name, int device) {
 
         if (createNew == 1) {
-            Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position));
+            String id_device =  String.valueOf(new Date().getTime());
+            Equipment equipment = new Equipment(name, "OFF", "OFF/23:00", String.valueOf(device), "OFF", String.valueOf(position), id_device);
             assert user != null;
             dataRef.child(user.getUid()).child("E" + position).setValue(equipment);
 
